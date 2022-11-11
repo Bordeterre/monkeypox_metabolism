@@ -3,32 +3,44 @@ class Graph {
         this.elements = []
     }
 
-    is_element_present(id){
-        if (this.elements.find(e => e.id === id)){
-            return true;
-        }
-        
-        return false;
+    search_element(id){
+        return this.elements.find(e => e.id === id);  
     }
 
     create_node(id){
-        if(this.is_element_present(id)){
-            return;
-        }
+        let node = this.search_element(id)
 
-        if(id.startsWith("p(")){
-            this.elements.push(new Protein(id));
+        if(typeof node === "undefined"){
+            if(id.startsWith("a(")){
+                node = new Metabolite(id); 
+            }
+            else if(id.startsWith("p(")){
+                node = new Protein(id);
+            }
+            else if(id.startsWith("bp(")){
+                node = new Pathway(id);
+            }
+
+            if (typeof node !== "undefined"){
+                this.elements.push(node);
+            }
         }
-        else if(id.startsWith("a(")){
-            this.elements.push(new Metabolite(id));
-        }
+        return node;
     }
 
     create_edge(source, target){
-        if(this.is_element_present(source + "=>" + target)){
-            return;
+        if(typeof source === "undefined" || typeof target === "undefined"){
+            return undefined;
         }
-        this.elements.push(new Edge(source, target));
+
+        let edge = this.search_element(source.id + "=>" + target.id)
+
+        if(typeof edge === "undefined"){
+            edge = new Edge(source, target);
+            this.elements.push(edge);
+        }
+
+        return edge;
     }
     
     async from_sif(file, pathways_of_interest){
@@ -41,13 +53,13 @@ class Graph {
             let target = lines[l][2];
 
             if(pathways_of_interest.includes(source) || pathways_of_interest.includes(target)){
-                this.create_node(source)
-                this.create_node(target)
-                this.create_edge(source, target);
+                let source_node = this.create_node(source)
+                let target_node = this.create_node(target)
+                this.create_edge(source_node, target_node);
             }
         }
         // Collecte les métabolites en intéraction avec les protéines collectées
-        /* TO DO (s'inspirer du code de parseur.js) */
+        /* TO DO (s'inspirer du code de parseur.js)*/
     } 
 }
 
