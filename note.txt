@@ -1,0 +1,17 @@
+1 seul type d'edge : 
+    - "association" : {target: 'a(ChEMBL:CHEMBL1257073)', source: 'bp(MOA:"Envelope phospholipase F13 (p37) inhibitor")', intType: 'association'}
+
+4 types de noeuds : 
+    - "path" => Pathologie, on s'en fout
+        - Disease : {id: 'path(Disease:Cystinosis)'}
+        - SideEffect : {id: 'parser.js:15 path(SideEffect:"amino acid level increased")'}
+    
+    - "a" => substrats
+        - "ChEMBL" : {id: 'a(ChEMBL:CHEMBL123)'} => Molécule ChEMBL
+        - "ChEMBLAssay" : {id: 'a(ChEMBLAssay:CHEMBL686760)'} => Assay d'efficacité chEMBL
+
+    - "p" : {id: 'p(HGNC:CHEMBL4296170)'} => Protéine SUR ChEMBL
+
+    - "bp" => Biological process, correspond aux pathways
+        - Avec "" : {id: 'bp(MOA:"Envelope phospholipase F13 (p37) inhibitor")'}
+        - Sans "" : {id: 'bp(MOA:Supplement)'}
