@@ -24,7 +24,7 @@
 
 import CytoscapeComponent from "react-cytoscapejs";*/
 //import sbgnStylesheet from "/home/bluwen/package.json";
-import * as cytoscape from 'cytoscape';
+import cytoscape from 'cytoscape';
 import sbgnStylesheet from 'cytoscape-sbgn-stylesheet';
 
 let cy = cytoscape({
@@ -59,6 +59,33 @@ let cy = cytoscape({
             unitsOfInformation: [],
         } 
     },
+      { data: { 
+        id: 'a(ChEMBLAssay:CHEMBL3294636)',
+        class: 'simple chemical',
+        label: 'CHEMBL3294636',
+        clonemarker:"false",
+        stateVariables: [],
+        unitsOfInformation: [],
+      } 
+    },
+      { data: { 
+        id: 'a(ChEMBLAssay:CHEMBL800629)',
+        class: 'simple chemical',
+        label: 'CHEMBL800629',
+        clonemarker:"false",
+        stateVariables: [],
+        unitsOfInformation: [],
+      } 
+    },
+      { data: { 
+        id: 'bp(Reactome:Methylation.)',
+        class: 'process',
+        label: 'Reactome:Methylation',
+        clonemarker:"false",
+        stateVariables: [],
+        unitsOfInformation: [],
+      } 
+    },
         //{ data: { id: 'a(ChEMBLAssay:CHEMBL800629)' } },
         //{ data: { id: 'bp(Reactome:Methylation.)' } },
         //{ data: { id: 'bp(Reactome:\"Sulfur amino acid metabolism.\")' } },
@@ -72,15 +99,46 @@ let cy = cytoscape({
             "portSource": "glyph19",           // port of the source
             "portTarget": "glyph5"             // port of the target
           }*/
+        /*1: Object { target: "a(ChEMBLAssay:CHEMBL3294636)", source: "p(HGNC:AHCY)", intType: "association" }
+    2: Object { target: "a(ChEMBLAssay:CHEMBL800629)", source: "p(HGNC:AHCY)", intType: "association" }
+    3: Object { target: "bp(Reactome:Methylation.)", source: "p(HGNC:AHCY)", intType: "association" }*/ 
         {
           data: {
             id: 'association',
             class: "association",
             cardinality: 0, 
-            source: 'a(ChEMBLAssay:CHEMBL3294635)',
-            target: 'p(HGNC:AHCY)'
+            source: 'p(HGNC:AHCY)',
+            target: 'a(ChEMBLAssay:CHEMBL3294635)'
           }
-        },/*
+        },        
+        {
+          data: {
+            id: 'association',
+            class: "association",
+            cardinality: 10, 
+            source: 'p(HGNC:AHCY)',
+            target: 'a(ChEMBLAssay:CHEMBL3294636)'
+          }
+        },
+        {
+          data: {
+            id: 'association',
+            class: "association",
+            cardinality: 20, 
+            source: 'p(HGNC:AHCY)',
+            target: 'a(ChEMBLAssay:CHEMBL800629)'
+          }
+        },
+        {
+          data: {
+            id: 'association',
+            class: "association",
+            cardinality: 30, 
+            source: 'p(HGNC:AHCY)',
+            target: 'bp(Reactome:Methylation.)'
+          }
+        },
+        /*
         {
           data: {
             id: 'association_1',
