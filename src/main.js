@@ -18,10 +18,11 @@ async function on_file_upload(ev){
     let file = ev.target.files[0];
     await GRAPH.from_sif(file, filter_nodes)
     console.log(GRAPH);
-
+    file = write_json(GRAPH);
+    //downloadObjectAsJson(file,"cc");
+    load_json(file);
 }
 
 ///////////////////////////////////////////////////     MAIN     ///////////////////////////////////////////////////
 const GRAPH = new Graph();
-initialize()
-
+initialize();
