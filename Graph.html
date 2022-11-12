@@ -11,34 +11,7 @@
         <div id="cy"></div>
 
         <!-- <Scripts> -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.23.0/cytoscape.min.js"></script>
-        <script>
-        let cy = cytoscape({
-            container: document.getElementById('cy'),
-            elements: [
-              { data: { id: 'a' } },
-              { data: { id: 'b' } },
-              {
-                data: {
-                  id: 'ab',
-                  source: 'a',
-                  target: 'b'
-                }
-              }],
-    style: [
-        {
-            selector: 'node',
-            style: {
-                shape: 'hexagon',
-                'background-color': 'red',
-                label: 'data(id)'
-            } }],
-            layout: {
-    name: 'grid'
-}
-
-          }); 
-          </script>
+        <script type="module" src="src/graph.js"></script>
     </body>
     <style>
         #cy {
