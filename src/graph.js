@@ -109,7 +109,7 @@ class Protein extends Displayable_node {
 
     async fetch_from_Chembl(){
         let id_CHembl = this.id.split(":")[1].slice(0, -1);
-        let json = await fetch("https://www.ebi.ac.uk/chembl/api/data/target/search.json?organism=Homo%20sapiens&q=" + id_CHembl)
+        let json = await fetch("https://www.ebi.ac.uk/chembl/api/data/target/search.json?target_type=SINGLE%20PROTEIN&(species:'Homo%20sapiens')%20OR%20(species:'Monkeypox%20virus')&q=" + id_CHembl)
         .then((response) => response.json());
         //console.log(json.targets[0])
         this.label = json.targets[0].pref_name;
