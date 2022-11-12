@@ -47,7 +47,8 @@ class Graph {
     
     async from_sif(file, pathways_of_interest){
         let raw_text = await file.text();
-        let lines = raw_text.split("\r\n").map(function(x){return x.split("\t")});
+        let lines =  raw_text.split("\r").join(""); // Enlève les \r si l'utilisateur est en windows
+        lines = lines.split("\n").map(function(x){return x.split("\t")});
 
         //Collecte les protéines en intéraction avec les pathways d'intérêt.
         for(let l = 0; l < lines.length; l++){
