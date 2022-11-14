@@ -146,7 +146,7 @@ class Protein extends Displayable_node {
 
 class Metabolite extends Displayable_node {
     constructor(id) {
-        super(id, "simple chemical", "label", true) //faut le mettre true?
+        super(id, "simple chemical", "label", false);
     }
 
     async fetch_from_Chembl() {
@@ -161,6 +161,7 @@ class Metabolite extends Displayable_node {
         if (json.chembl_id_lookups[0].entity_type != "ASSAY") {
             let json_metabolite = await fetch("https://www.ebi.ac.uk/chembl/api/data/molecule/search.json?&q=" + id_CHembl)
                 .then((response) => response.json());
+            console.log(json_metabolite.molecules[0] )
             //console.log(json_metabolite.molecules[0].pref_name)
             this.label = json_metabolite.molecules[0].pref_name;
         }
@@ -170,4 +171,3 @@ class Metabolite extends Displayable_node {
         }
     }
 }
-
