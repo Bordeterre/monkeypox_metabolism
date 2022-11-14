@@ -24,8 +24,6 @@
 
 import CytoscapeComponent from "react-cytoscapejs";*/
 //import sbgnStylesheet from "/home/bluwen/package.json";
-import cytoscape from 'cytoscape';
-import sbgnStylesheet from 'cytoscape-sbgn-stylesheet';
 
 let cy = cytoscape({
     container: document.getElementById('cy'),
@@ -168,7 +166,7 @@ let cy = cytoscape({
           }
         }*/
       ],
-      style:sbgnStylesheet(cytoscape), /*[
+      style: cytoscapeSbgnStylesheet(cytoscape), /*[
           {
               selector: 'node',
               style: {
