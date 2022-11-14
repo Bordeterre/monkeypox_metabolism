@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
     <head>
         <meta charset="utf-8">
         <meta name="author" content="Nicolas Maurice">
@@ -9,12 +10,23 @@
     <body>
         <section id = "upload_zone" ></section>
         <section id = "download_zone" ></section>
+        <div id ="graph_display"></div>
+
+        <!-- <Libraries> -->
+        <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.23.0/cytoscape.min.js"></script>
 
         <!-- <Scripts> -->
         <script src="src/graph.js"></script> <!-- Structure that stores the graph data -->
         <script src="src/json_writer.js"></script> <!-- Write a Json file -->
         <script src="src/main.js"></script> <!-- Coordinates other scripts -->
-
-
     </body>
+    <style>
+        #graph_display {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+    </style>
 </html>

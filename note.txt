@@ -1,11 +1,11 @@
-1 seul type d'edge : 
+1 seul type d'edge :
     - "association" : {target: 'a(ChEMBL:CHEMBL1257073)', source: 'bp(MOA:"Envelope phospholipase F13 (p37) inhibitor")', intType: 'association'}
 
-4 types de noeuds : 
+4 types de noeuds :
     - "path" => Pathologie, on s'en fout
         - Disease : {id: 'path(Disease:Cystinosis)'}
         - SideEffect : {id: 'parser.js:15 path(SideEffect:"amino acid level increased")'}
-    
+
     - "a" => substrats
         - "ChEMBL" : {id: 'a(ChEMBL:CHEMBL123)'} => Molécule ChEMBL
         - "ChEMBLAssay" : {id: 'a(ChEMBLAssay:CHEMBL686760)'} => Assay d'efficacité chEMBL
@@ -15,3 +15,10 @@
     - "bp" => Biological process, correspond aux pathways
         - Avec "" : {id: 'bp(MOA:"Envelope phospholipase F13 (p37) inhibitor")'}
         - Sans "" : {id: 'bp(MOA:Supplement)'}
+
+
+-à faire :
+    -npm marche pas partout : trouver alternative pour faire marcher sur CREMI ou autre systèmes d'exploitation
+    -il nous faut un observeur pour afficher le graphe à chaque modification du graphe
+    -composite qui contient plusieurs Graph_element pour si on veut déplacer les noeuds et arêtes ?
+    -Légende pour graphe

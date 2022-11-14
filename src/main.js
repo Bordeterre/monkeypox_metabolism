@@ -1,4 +1,7 @@
+
+
 /////////////////////////////////////////////////     FUNCTIONS     ////////////////////////////////////////////////
+
 function initialize(){
     let form = document.createElement("input");
     form.setAttribute("type","file");
@@ -9,7 +12,7 @@ function initialize(){
     let upload_zone = document.getElementById("upload_zone");
     upload_zone.appendChild(form);
 
-    
+
 }
 
 async function on_file_upload(ev){
@@ -20,7 +23,25 @@ async function on_file_upload(ev){
     console.log(GRAPH);
     file = write_json(GRAPH);
     //downloadObjectAsJson(file,"cc");
-    load_json(file);
+    //load_json(file);
+
+    display_graph()
+
+}
+
+async function display_graph(){
+    let json = write_json(GRAPH).elements;
+
+    let cy = cytoscape({
+        container : document.getElementById("graph_display"),
+        elements : json,
+        //style : sbgnStylesheet(cytoscape),
+        style: {
+            'background-color': 'red'
+        },
+    });
+    cy.layout({name: "circle"}).run();
+
 }
 
 ///////////////////////////////////////////////////     MAIN     ///////////////////////////////////////////////////
