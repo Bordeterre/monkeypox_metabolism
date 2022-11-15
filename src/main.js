@@ -31,15 +31,16 @@ async function on_file_upload(ev){
 
 async function display_graph(){
     let json = write_json(GRAPH).elements;
+    console.log(json);
 
     let cy = cytoscape({
         container : document.getElementById("graph_display"),
         elements : json,
-        //style : sbgnStylesheet(cytoscape),
-        style: {
-            'background-color': 'red'
-        },
+        style : cytoscapeSbgnStylesheet(cytoscape),
+        
     });
+
+    console.log(cy);
     cy.layout({name: "circle"}).run();
 
 }
