@@ -61,7 +61,6 @@ async function fetch_protein_HGNC(node,id){
         .then((response) => response.json());
     node.label = json.response.docs[0].name
     node.uniprot_id =  json.response.docs[0].uniprot_ids
-    console.log(json)
 }
 
 async function fetch_molecule_ChEMBL(node,id){
