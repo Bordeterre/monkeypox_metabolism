@@ -11,26 +11,28 @@ function initialize(){
 
     let upload_zone = document.getElementById("upload_zone");
     upload_zone.appendChild(form);
-
-
 }
 
 async function on_file_upload(ev){
     // Codé en dur pour l'instant, à remplacer par un choix interactif de l'utilisateur et/ou une config file
-    let filter_nodes = ['bp(Reactome:"Defective AHCY causes HMAHCHD.")','bp(Reactome:"Sulfur amino acid metabolism.")','bp(GOBP:"one-carbon metabolic process")'];
+    //let filter_nodes = ['bp(Reactome:"Defective AHCY causes HMAHCHD.")','bp(Reactome:"Sulfur amino acid metabolism.")','bp(GOBP:"one-carbon metabolic process")'];
     let file = ev.target.files[0];
-    await GRAPH.from_sif(file, filter_nodes)
+    //await GRAPH.from_sif(file, filter_nodes)
+    await build_graph_from_sif(GRAPH, file);
     console.log(GRAPH);
     file = write_json(GRAPH);
     //downloadObjectAsJson(file,"cc");
     //load_json(file);
+    //display_graph()
 
-    display_graph()
-
+    // Créer boutons et eventlisteners pour sélectionner des paths à filtrer
 }
 
+async function on_pathway_selection(ev){
+    //affiche le graphe avec juste les pathways dont on a besoin
+}
 async function display_graph(){
-    let json = write_json(GRAPH).elements;
+    //let json = write_json(GRAPH).elements;
     
 
     let json = [

@@ -31,6 +31,10 @@ function write_json(GRAPH){
     return (data);
 }
 
+function extract_json(graph, pathways=[], include=false){
+  //pathways : liste des pathways à inclure ou exclure dans le json
+  //include : booléen, détermine si on prend tout les pathways sauf ceux de pathways[] (false), ou juste ceux du pathways[] (true) 
+}
 /*
 elements: [ // list of graph elements to start with
     { // node a
