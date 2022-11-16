@@ -13,10 +13,8 @@ class Graph {
         if (typeof node === "undefined") {
             if (id.startsWith("a(")) {
                 node = new Metabolite(id);
-                await fetch_metabolite_from_Chembl(node);
             } else if (id.startsWith("p(")) {
-                node = new Protein(id);
-                await fetch_protein_from_Chembl(node);
+                node = new Catalyst(id);
             } else if (id.startsWith("bp(")) {
                 node = new Pathway(id);
             }
@@ -48,6 +46,35 @@ class Graph {
 
     get_pathways(){
         // return a list of pathways contained in the graph
+    }
+
+    extract_pathways(pathways){
+        // return catalysts and metabolites associated to thaose pathways
+        let out = new Set();
+        let catalysts = new Set();
+        // collect catalysts
+        for (let data of GRAPH.elements){
+            if(data.class == "association"){
+                if(pathways.includes(data.target.id)){    
+                    catalysts.add(data.source)
+                }
+                else if(pathways.includes(data.source.id)){
+                    catalysts.add(data.target)
+                }    
+            }
+        }
+        // collect metabolites
+        for (let data of GRAPH.elements){
+            if(data.class == "association"){
+                if(catalysts.has(data.target) || catalysts.has(data.source)){
+                    out.add(data);
+                    out.add(data.source);
+                    out.add(data.target);
+                }
+            }
+        }
+        return out;
+        
     }
 
     
@@ -90,7 +117,7 @@ class Displayable_node extends Node {
 
 }
 
-class Protein extends Displayable_node {
+class Catalyst extends Displayable_node {
     constructor(id) {
         super(id, "macromolecule", "label", false);
     }

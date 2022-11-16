@@ -11,52 +11,57 @@ function load_json(data){
 }
 
 function write_json(GRAPH){
-    let data = {elements:[]};
+    let data = [];
+    cardinality = 0;
     for (let i of GRAPH.elements) {
         let classe = i.class ;
         switch (classe){
             case "macromolecule" :
-                data.elements.push({data:{id:i.id}});
+                data.push({data:{id:i.id, class:i.class, label:i.label, clonemarker:"false", stateVariables: [], 
+                unitsOfInformation: []}});
                 break;
             case "simple chemical" :
-                data.elements.push({data:{id:i.id}});
+                data.push({data:{id:i.id, class:i.class, label:i.label, clonemarker:"false", stateVariables: [], 
+                unitsOfInformation: []}});
                 break;
             case "association" :
                 if (i.source.class != "pathway" && i.target.class != "pathway"){
-                    data.elements.push({data:{id:i.id, source:i.source.id, target:i.target.id}});
+                    data.push({data:{id:i.id, class:i.class, cardinality:cardinality, source:i.source.id, target:i.target.id}});
+                    cardinality +=10;
                 }
                 break;
         }
     }
-    return (data);
+  return (data);
 }
 
-function extract_json(graph, pathways=[], include=false){
-  //pathways : liste des pathways à inclure ou exclure dans le json
-  //include : booléen, détermine si on prend tout les pathways sauf ceux de pathways[] (false), ou juste ceux du pathways[] (true) 
-}
-/*
-elements: [ // list of graph elements to start with
-    { // node a
-      data: { id: 'a' }
-    },
-    { // node b
-      data: { id: 'b' }
-    },
-    { // edge ab
-      data: { id: 'ab', source: 'a', target: 'b' }
+async function extract_json(graph, pathways, include){
+    //pathways : liste des pathways à inclure ou exclure dans le json
+    //include : booléen, détermine si on prend tout les pathways sauf ceux de pathways[] (false), ou juste ceux du pathways[] (true) 
+
+    let data = [];
+    let cardinality = 0;
+    for (let i of graph.extract_pathways(pathways)) {
+        let classe = i.class ;
+        switch (classe){
+            case "macromolecule" :
+                await fetch_catalyst_from_Chembl(i);
+                data.push({data:{id:i.id, class:i.class, label:i.label, clonemarker:"false", stateVariables: [], 
+                unitsOfInformation: []}});
+                break;
+            case "simple chemical" :
+                await fetch_metabolite_from_Chembl(i);
+                data.push({data:{id:i.id, class:i.class, label:i.label, clonemarker:"false", stateVariables: [], 
+                unitsOfInformation: []}});
+                break;
+            case "association" :
+                if (i.source.class != "pathway" && i.target.class != "pathway"){
+                    data.push({data:{id:i.id, class:i.class, cardinality:cardinality, source:i.source.id, target:i.target.id}});
+                    cardinality +=10;
+                }
+                break;
+        }
     }
-  ]
-*/
 
-/*
-function downloadObjectAsJson(exportObj, exportName){
-    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj));
-    var downloadAnchorNode = document.createElement('a');
-    downloadAnchorNode.setAttribute("href",     dataStr);
-    downloadAnchorNode.setAttribute("download", exportName + ".json");
-    document.body.appendChild(downloadAnchorNode); // required for firefox
-    downloadAnchorNode.click();
-    downloadAnchorNode.remove();
-  }
-  */
+    return data;
+}

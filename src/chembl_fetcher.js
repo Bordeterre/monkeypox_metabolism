@@ -1,9 +1,11 @@
 
-async function fetch_protein_from_Chembl(protein) {
+async function fetch_catalyst_from_Chembl(protein) {
     let id_CHembl = protein.id.split(":")[1].slice(0, -1);
-    let json = await fetch("https://www.ebi.ac.uk/chembl/api/data/target/search.json?target_type=SINGLE%20PROTEIN%20OR%NUCLEIC-ACID&(species:'Homo%20sapiens')%20OR%20(species:'Monkeypox%20virus')&q=" + id_CHembl)
+
+    let json = await fetch("https://www.ebi.ac.uk/chembl/api/data/target/search.json?(target_type=SINGLE%20PROTEIN%20OR%20target_type=NUCLEIC-ACID%20)&(species:%27Homo%20sapiens%27)%20OR%20(species:%27Monkeypox%20virus%27)&q=" + id_CHembl)
         .then((response) => response.json());
-    //console.log(json.targets[0])
+    console.log(json)
+    console.log(id_CHembl)
     if(json.targets[0] != undefined){
         protein.label = json.targets[0].pref_name;
         if (json.targets[0].cross_references != undefined && json.targets[0].cross_references.length > 0) {
