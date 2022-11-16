@@ -112,6 +112,7 @@ class Pathway extends Node {
 class Displayable_node extends Node {
     constructor(id, class_name, label, clonemarker) {
         super(id, class_name, label, clonemarker)
+        this.was_fetched=false;
     }
 
 

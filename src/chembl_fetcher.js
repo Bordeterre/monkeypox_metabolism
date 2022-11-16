@@ -39,6 +39,9 @@ async function fetch_metabolite_from_Chembl(metabolite) {
 
 
 async function query_database(node){
+    if(node.was_fetched){
+        return;
+    }
     let database = node.id.split(":")[0];
     let id = node.id.split(":")[1].slice(0, -1);
 
@@ -48,11 +51,17 @@ async function query_database(node){
         case "a(ChEMBLAssay" : await fetch_assay_ChEMBL(node,id) ; break;
         default : console.log("Fetch error, unrecognized database !!! "); console.log(database);
     }
+
+    node.was_fetched = true;
 }
 
 
 async function fetch_protein_HGNC(node,id){
-    // à faire
+    let json = await fetch("https://rest.genenames.org/fetch/symbol/" + id, {headers :{'Accept': 'application/json'}})
+        .then((response) => response.json());
+    node.label = json.response.docs[0].name
+    node.uniprot_id =  json.response.docs[0].uniprot_ids
+    console.log(json)
 }
 
 async function fetch_molecule_ChEMBL(node,id){
