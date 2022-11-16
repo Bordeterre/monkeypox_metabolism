@@ -45,12 +45,12 @@ async function extract_json(graph, pathways, include){
         let classe = i.class ;
         switch (classe){
             case "macromolecule" :
-                await fetch_catalyst_from_Chembl(i);
+                await query_database(i);
                 data.push({data:{id:i.id, class:i.class, label:i.label, clonemarker:"false", stateVariables: [], 
                 unitsOfInformation: []}});
                 break;
             case "simple chemical" :
-                await fetch_metabolite_from_Chembl(i);
+                await query_database(i);
                 data.push({data:{id:i.id, class:i.class, label:i.label, clonemarker:"false", stateVariables: [], 
                 unitsOfInformation: []}});
                 break;

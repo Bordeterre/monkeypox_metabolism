@@ -2,7 +2,7 @@
 async function fetch_catalyst_from_Chembl(protein) {
     let id_CHembl = protein.id.split(":")[1].slice(0, -1);
 
-    let json = await fetch("https://www.ebi.ac.uk/chembl/api/data/target/search.json?(target_type=SINGLE%20PROTEIN%20OR%20target_type=NUCLEIC-ACID%20)&(species:%27Homo%20sapiens%27)%20OR%20(species:%27Monkeypox%20virus%27)&q=" + id_CHembl)
+    let json = await fetch("https://www.ebi.ac.uk/chembl/api/data/target/search.json?(target_type=SINGLE%20PROTEIN%20OR%20target_type=NUCLEIC-ACID%20)&(species:%27Homo%20sapiens%27)%20OR%20(species:%27Monkeypox%20virus%27)&q=" + id_CHembl+"%20")
         .then((response) => response.json());
     console.log(json)
     console.log(id_CHembl)
@@ -34,4 +34,37 @@ async function fetch_metabolite_from_Chembl(metabolite) {
     else {
         metabolite.label = "ASSAY_" + id_CHembl; //à adapter
     }
+}
+
+
+
+async function query_database(node){
+    let database = node.id.split(":")[0];
+    let id = node.id.split(":")[1].slice(0, -1);
+
+    switch (database){
+        case "p(HGNC" : await fetch_protein_HGNC(node,id) ; break;
+        case "a(ChEMBL" : await fetch_molecule_ChEMBL(node,id) ; break;
+        case "a(ChEMBLAssay" : await fetch_assay_ChEMBL(node,id) ; break;
+        default : console.log("Fetch error, unrecognized database !!! "); console.log(database);
+    }
+}
+
+
+async function fetch_protein_HGNC(node,id){
+    // à faire
+}
+
+async function fetch_molecule_ChEMBL(node,id){
+    let json = await fetch("https://www.ebi.ac.uk/chembl/api/data/molecule/" + id + ".json")
+        .then((response) => response.json());
+    
+    node.label = json.pref_name;
+}
+
+async function fetch_assay_ChEMBL(node,id){
+    let json = await fetch("https://www.ebi.ac.uk/chembl/api/data/assay/" + id + ".json")
+        .then((response) => response.json());
+    //console.log(json)
+    node.label = "ASSAY_" + id; //à adapter
 }
