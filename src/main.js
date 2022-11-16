@@ -30,12 +30,13 @@ async function on_file_upload(ev){
 }
 
 async function display_graph(){
-    let json = write_json(GRAPH).elements;
+    let json = write_json(GRAPH);
+    console.log(json);
     
-
+/*
     let json = [
         // nodes
-        /*"data": {
+        "data": {
             "id": "glyph23",                   // id of the node
             "class": "simple chemical",        // class of the node (see classes section for a list of supported sbgn glyphs
             "label": "Ca2+",                   // label to be displayed on the node
@@ -43,7 +44,7 @@ async function display_graph(){
             "clonemarker": false,              // whether the node has a clonemarker or not
             "stateVariables": [],              // an array of state variables
             "unitsOfInformation": [],          // an array of units of information
-          }*/
+          }
         { data: { 
             id: 'a(ChEMBLAssay:CHEMBL3294635)',
             class: 'simple chemical',
@@ -102,10 +103,10 @@ async function display_graph(){
             "target": "glyph5",                // target node id
             "portSource": "glyph19",           // port of the source
             "portTarget": "glyph5"             // port of the target
-          }*/
-        /*1: Object { target: "a(ChEMBLAssay:CHEMBL3294636)", source: "p(HGNC:AHCY)", intType: "association" }
+          }
+        1: Object { target: "a(ChEMBLAssay:CHEMBL3294636)", source: "p(HGNC:AHCY)", intType: "association" }
     2: Object { target: "a(ChEMBLAssay:CHEMBL800629)", source: "p(HGNC:AHCY)", intType: "association" }
-    3: Object { target: "bp(Reactome:Methylation.)", source: "p(HGNC:AHCY)", intType: "association" }*/ 
+    3: Object { target: "bp(Reactome:Methylation.)", source: "p(HGNC:AHCY)", intType: "association" }
         {
           data: {
             id: 'association',
@@ -142,7 +143,7 @@ async function display_graph(){
             target: 'bp(Reactome:Methylation.)'
           }
         },
-        /*
+        
         {
           data: {
             id: 'association_1',
@@ -170,8 +171,8 @@ async function display_graph(){
             source: 'bp(Reactome:\"Sulfur amino acid metabolism.\")',
             target: 'p(HGNC:AHCY)'
           }
-        }*/
-      ]
+        }
+      ] */
     let cy = cytoscape({
         container : document.getElementById("graph_display"),
         elements : json,
