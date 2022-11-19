@@ -1,35 +1,42 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <meta charset="utf-8">
-        <meta name="author" content="Nicolas Maurice">
-        <title>Monkeypox</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Nicolas Maurice">
+    <title>Monkeypox</title>
 
-    </head>
-    <body>
-        <section id = "upload_zone" ></section>
-        <section id = "download_zone" ></section>
-        <div id ="graph_display"></div>
-        <div id ="choice_pathway"></div>
-        <!-- <Libraries> -->
-        <script src="https://unpkg.com/cytoscape@3.23.0/dist/cytoscape.min.js"></script>
-        <script src="https://unpkg.com/cytoscape-sbgn-stylesheet@4.0.2/build/bundle.js"></script>
+</head>
+<body>
+<section id="upload_zone"></section>
+<section id="download_zone"></section>
+<div id="graph_display"></div>
+<div id="choice_pathway"></div>
+<div id="submit_choice_pathway"></div>
 
-        <!-- <Scripts> -->
-        <script src="src/sif_parser.js"></script>
-        <script src="src/chembl_fetcher.js"></script>
-        <script src="src/graph.js"></script> <!-- Structure that stores the graph data -->
-        <script src="src/json_writer.js"></script> <!-- Write a Json file -->
-        <script src="src/main.js"></script> <!-- Coordinates other scripts -->
-    </body>
-    <style>
-        #graph_display {
-            width: 50%;
-            height: 100%;
-            position: absolute;
-            top: 0%;
-            left: 20%;
-        }
-    </style>
+<!-- <Libraries> -->
+<script src="https://unpkg.com/cytoscape@3.23.0/dist/cytoscape.min.js"></script>
+<script src="https://unpkg.com/cytoscape-sbgn-stylesheet@4.0.2/build/bundle.js"></script>
+
+<!-- <Scripts> -->
+<script src="src/sif_parser.js"></script>
+<script src="src/chembl_fetcher.js"></script>
+<script src="src/graph.js"></script> <!-- Structure that stores the graph data -->
+<script src="src/json_writer.js"></script> <!-- Write a Json file -->
+<script src="src/main.js"></script> <!-- Coordinates other scripts -->
+</body>
+<style>
+    #graph_display {
+        width: 50%;
+        height: 100%;
+        position: ;
+        top: 0%;
+        left: 20%;
+    }
+
+    #choice_pathway {
+        max-block-size: 200px;
+        overflow: auto;
+    }
+</style>
 </html>

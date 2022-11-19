@@ -59,8 +59,16 @@ async function query_database(node){
 async function fetch_protein_HGNC(node,id){
     let json = await fetch("https://rest.genenames.org/fetch/symbol/" + id, {headers :{'Accept': 'application/json'}})
         .then((response) => response.json());
-    node.label = json.response.docs[0].name
-    node.uniprot_id =  json.response.docs[0].uniprot_ids
+    console.log(json.response.numFound)
+    if (json.response.numFound != 0){
+        node.label = json.response.docs[0].name
+        node.uniprot_id = json.response.docs[0].uniprot_ids
+    }
+    else {
+        // temporary notation to understand why it is not found
+        node.label = "prot" + id
+        node.uniprot_id = "None"
+    }
 }
 
 async function fetch_molecule_ChEMBL(node,id){
