@@ -17,12 +17,12 @@ async function on_file_upload(ev){
     // Codé en dur pour l'instant, à remplacer par un choix interactif de l'utilisateur et/ou une config file
     let filter_nodes = ['bp(MOA:"Envelope phospholipase F13 (p37) inhibitor")','bp(Reactome:"Defective AHCY causes HMAHCHD.")','bp(Reactome:"Sulfur amino acid metabolism.")','bp(GOBP:"one-carbon metabolic process")'];
     let file = ev.target.files[0];
-
     // List of all pathways in the sif
     let pathways = await build_graph_from_sif(GRAPH, file);
+    //file = write_json(GRAPH);
     //display_graph(filter_nodes);
-    console.log(filter_nodes)
-    console.log(pathways)
+    console.log(GRAPH)
+    //console.log(file)
     // Créer boutons et eventlisteners pour sélectionner des paths à filtrer
     let select_zone = document.getElementById("choice_pathway");
 
@@ -39,14 +39,17 @@ async function on_file_upload(ev){
         checkbox.id = name;
         checkbox.name = "path";
         checkbox.value = bp;
+        checkbox.style.display = "";
 
         // Creation label (so it is possible to click on the text too)
         let label_checkbox = document.createElement("label")
-        label_checkbox.htmlFor = name
+        label_checkbox.htmlFor = checkbox.id;
+        label_checkbox.style.display = "";
         label_checkbox.appendChild(document.createTextNode(name));
 
         // Adding a div and append checkbox and label to the div
         const newDiv = document.createElement("div");
+        newDiv.style.display = "";
         newDiv.appendChild(checkbox);
         newDiv.appendChild(label_checkbox);
 
@@ -58,16 +61,54 @@ async function on_file_upload(ev){
     button_submit.addEventListener("click", on_pathway_selection);
     let submit_choice_zone = document.getElementById("submit_choice_pathway")
     submit_choice_zone.appendChild(button_submit)
+
+    let search_bar = document.createElement("input");
+    search_bar.type = "text";
+    search_bar.id = "search_bar";
+    search_bar.setAttribute("class","input");
+    search_bar.placeholder = "Search for key words..";
+    search_bar.addEventListener("input", search_function)
+    let search_bar_zone = document.getElementById("search_bar");
+    search_bar_zone.appendChild(search_bar);
+}
+
+async function recap(){
+    /*let text_choice = document.createElement("button");
+            //text_choice.class = "link";
+            //text_choice.style.background = "none";
+            //text_choice.style.border = "none";
+            text_choice.appendChild(document.createTextNode(data));
+            console.log(text_choice)
+
+            recap_zone = document.getElementById("recap_choice");
+            console.log()
+            recap_zone.appendChild(text_choice);*/
+}
+
+function search_function(ev){
+    let input = ev.target.value
+    let filter = input.toUpperCase();
+    let path_checkboxes = document.getElementsByName("path");
+    path_checkboxes.forEach(item => { // loop all the checkbox item
+        console.log(item.id.toUpperCase())
+        if (item.id.toUpperCase().includes(filter)) {
+            item.parentNode.style.display = "";
+        }
+        else {
+            item.parentNode.style.display = "none";
+            //unchek item that are no longer in the wanted items
+            //item.checked = false;
+        }
+    })
 }
 
 async function on_pathway_selection(ev){
     //affiche le graphe avec juste les pathways dont on a besoin
     path_checkboxes = document.getElementsByName("path");
-
     let result = [];
     path_checkboxes.forEach(item => { // loop all the checkbox item
         if (item.checked) {  //if the check box is checked
-            let data = item.value   // create an object
+            let data = item.value;   // create an object
             result.push(data); //stored the objects to result array
         }
     })
@@ -84,7 +125,7 @@ async function display_graph(pathways){
     });
 
     console.log(cy);
-    cy.layout({name: "circle"}).run();
+    cy.layout({name: "fcose"}).run();
 
 }
 
