@@ -52,24 +52,11 @@ async function on_pathway_selection(ev){
             result.push(data); //stored the objects to result array
         }
     })
-    display_graph(result)
+    display_cytoscape_graph(result)
 }
 
 
-async function display_graph(pathways){
-    console.log(pathways)
 
-    let cy = cytoscape({
-        container : document.getElementById("graph_display"),
-        elements : await extract_json(GRAPH, pathways,true),
-        style : cytoscapeSbgnStylesheet(cytoscape),
-        
-    });
-
-    console.log(cy);
-    cy.layout({name: "fcose"}).run();
-
-}
 
 ///////////////////////////////////////////////////     MAIN     ///////////////////////////////////////////////////
 const GRAPH = new Graph();
