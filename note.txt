@@ -18,7 +18,9 @@
 
 
 -à faire :
-    -npm marche pas partout : trouver alternative pour faire marcher sur CREMI ou autre systèmes d'exploitation
-    -il nous faut un observeur pour afficher le graphe à chaque modification du graphe
+    -il nous faut un observeur pour afficher le graphe à chaque modification du graphe ?
     -composite qui contient plusieurs Graph_element pour si on veut déplacer les noeuds et arêtes ?
     -Légende pour graphe
+
+    -Fonction pour faire du pathfinding (trouver le chemin entre un métabolite et un autre) ?
+    -Fonction pour parser json en excludant certains paths
