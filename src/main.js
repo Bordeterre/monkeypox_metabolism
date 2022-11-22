@@ -115,8 +115,10 @@ async function on_pathway_selection(ev){
     display_graph(result)
 }
 
+
 async function display_graph(pathways){
     console.log(pathways)
+
     let cy = cytoscape({
         container : document.getElementById("graph_display"),
         elements : await extract_json(GRAPH, pathways,true),
