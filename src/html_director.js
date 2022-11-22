@@ -2,13 +2,12 @@ function create_file_browser(){
     let form = document.createElement("input");
     form.setAttribute("type","file");
     form.setAttribute("class","browse");
-    form.setAttribute("id","upload_input");
+    
     form.addEventListener("change", on_file_upload);
 
     let upload_zone = document.getElementById("upload_zone");
     upload_zone.appendChild(form);
 }
-
 
 function create_pathway_selector(pathways){
     let select_zone = document.getElementById("choice_pathway");
@@ -73,4 +72,22 @@ function create_pathway_submit(zone){
     button_submit.type = "submit"
     button_submit.addEventListener("click", on_pathway_selection);
     zone.appendChild(button_submit)
+}
+
+
+
+function initialise_loading_bar(max){
+    let progress_bar = document.createElement("progress");
+    progress_bar.setAttribute("id","progress");
+    progress_bar.value=0;
+    progress_bar.max=max;
+
+    let progress_zone = document.getElementById("progress_zone");
+    progress_zone.appendChild(progress_bar);
+
+    return progress_bar;
+}
+
+function update_loading_bar(progress_bar, value){
+    progress_bar.value = value;
 }

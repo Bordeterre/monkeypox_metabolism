@@ -40,7 +40,14 @@ async function extract_json(graph, pathways){
 
     let data = [];
     let cardinality = 0;
+    
+    console.log(graph.extract_pathways(pathways).size)
+    let progress_bar = initialise_loading_bar(graph.extract_pathways(pathways).size)
+    let n = 0
     for (let i of graph.extract_pathways(pathways)) {
+        n+=1;
+        update_loading_bar(progress_bar,n);
+
         let classe = i.class ;
         switch (classe){
             case "macromolecule" :
