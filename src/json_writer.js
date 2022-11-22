@@ -56,7 +56,7 @@ async function extract_json(graph, pathways, include){
                 break;
             case "association" :
                 if (i.source.class != "pathway" && i.target.class != "pathway"){
-                    data.push({data:{id:i.id, class:i."stimulation", cardinality:cardinality, source:i.source.id, target:i.target.id}});
+                    data.push({data:{id:i.id, class:"stimulation", cardinality:cardinality, source:i.source.id, target:i.target.id}});
                     cardinality +=10;
                 }
                 break;
