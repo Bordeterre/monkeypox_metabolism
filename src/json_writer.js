@@ -35,9 +35,8 @@ function write_json(GRAPH){
   return (data);
 }
 
-async function extract_json(graph, pathways, include){
+async function extract_json(graph, pathways){
     //pathways : liste des pathways à inclure ou exclure dans le json
-    //include : booléen, détermine si on prend tout les pathways sauf ceux de pathways[] (false), ou juste ceux du pathways[] (true) 
 
     let data = [];
     let cardinality = 0;
