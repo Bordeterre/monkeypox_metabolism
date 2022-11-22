@@ -83,6 +83,7 @@ function initialise_loading_bar(max){
     progress_bar.max=max;
 
     let progress_zone = document.getElementById("progress_zone");
+    progress_zone.textContent = '';
     progress_zone.appendChild(progress_bar);
 
     return progress_bar;
@@ -90,4 +91,18 @@ function initialise_loading_bar(max){
 
 function update_loading_bar(progress_bar, value){
     progress_bar.value = value;
+}
+
+function display_fetch_in_progress(id){
+    let fetch_msg = document.getElementById("fetch_msg");
+    fetch_msg.textContent = "fetching "+id+"...";
+
+}
+
+function clear_loading_bar(){
+    let progress_zone = document.getElementById("progress_zone");
+    progress_zone.textContent = '';
+    let fetch_msg = document.getElementById("fetch_msg");
+    fetch_msg.textContent = '';
+
 }

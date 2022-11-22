@@ -5,6 +5,8 @@ async function query_database(node){
     }
     let database = node.id.split(":")[0];
     let id = node.id.split(":")[1].slice(0, -1);
+    
+    display_fetch_in_progress(id);
 
     switch (database){
         case "p(HGNC" : await fetch_protein_HGNC(node,id) ; break;
@@ -44,4 +46,12 @@ async function fetch_assay_ChEMBL(node,id){
         .then((response) => response.json());
     //console.log(json)
     node.label = "ASSAY_" + id; //à adapter
+}
+
+async function fetch_protein_uniprot(node,id){
+    // Pas encore au point du tout
+    console.log(node.id);
+    let json = await fetch("https://rest.uniprot.org/uniprotkb/search?query=(gene:"+id+")",{headers :{'Accept': 'application/json'}}) //(taxonomy_id:10244)AND
+        .then((response) => response.json());
+    console.log(json);
 }

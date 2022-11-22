@@ -52,7 +52,8 @@ async function on_pathway_selection(ev){
             result.push(data); //stored the objects to result array
         }
     })
-    display_cytoscape_graph(result)
+    await display_cytoscape_graph(result)
+    clear_loading_bar()
 }
 
 
