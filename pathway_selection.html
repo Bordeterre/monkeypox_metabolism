@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Nicolas Maurice">
+        <title>Monkeypox</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+
+    <body>
+
+        <section id="progress_zone"></section>
+<section id="fetch_msg"></section>
+
+<section id="upload_zone"></section>
+<section id="download_zone"></section>
+
+<div id="search_bar"></div>
+<div id="choice_pathway"></div>
+<div id="recap_choice"></div>
+<div id="submit_choice_pathway"></div>
+
+<div id="graph_display"></div>
+
+    <!-- <Libraries> -->
+    <script src="https://unpkg.com/cytoscape@3.23.0/dist/cytoscape.min.js"></script>
+    <script src="https://unpkg.com/cytoscape-sbgn-stylesheet@4.0.2/build/bundle.js"></script>
+
+    <script src="https://unpkg.com/layout-base/layout-base.js"></script>
+    <script src="https://unpkg.com/cose-base/cose-base.js"></script>
+    <script src="https://unpkg.com/cytoscape-fcose/cytoscape-fcose.js"></script>
+
+    <!-- <Scripts> -->
+    <script src="src/html_director.js"></script>
+    <script src="src/cytoscape_director.js"></script>
+    <script src="src/sif_parser.js"></script>
+    <script src="src/fetcher.js"></script>
+    <script src="src/graph.js"></script> <!-- Structure that stores the graph data -->
+    <script src="src/json_writer.js"></script> <!-- Write a Json file -->
+</body>
+</html>

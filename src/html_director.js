@@ -1,15 +1,19 @@
 function create_file_browser(){
-    let form = document.createElement("input");
-    form.setAttribute("type","file");
-    form.setAttribute("class","browse");
-    
+    let form = document.getElementById("file_upload");   
     form.addEventListener("change", on_file_upload);
 
-    let upload_zone = document.getElementById("upload_zone");
-    upload_zone.appendChild(form);
 }
 
+function create_loader(){
+    let loader = document.createElement("div");
+    loader.setAttribute("class","lds-dual-ring");
+
+    document.body.appendChild(loader)
+}
 function create_pathway_selector(pathways){
+    /*
+    document.location.href = "pathway_selection.html";
+    
     let select_zone = document.getElementById("choice_pathway");
     let search_bar_zone = document.getElementById("search_bar");
     let submit_choice_zone = document.getElementById("submit_choice_pathway");
@@ -20,6 +24,8 @@ function create_pathway_selector(pathways){
     for (let bp of pathways) {
         create_pathway_checkbox(select_zone, bp);
     }
+    */
+    
 
 
 

@@ -1,92 +1,77 @@
-/*
-
-
-html{
-    height : 100%;
-    background-color : #ffffff;
-    font-size: 1.1em;
-    font-family: 'Roboto Condensed', sans-serif;
-}
-
-body{
-    display: flex;
-    flex-direction : row;
-    justify-content: center;
-    align-items: stretch;
-    height : 100%;
-}
-
-section{
-    border: 5px solid black;
-}
-#side{
-    flex :  30%;
-
-    display: flex;
-    flex-direction: column;
-
-}
-
-#search_bar{
-    flex :  30%;
-}
-
-#tools{
-    flex :  60%;
-}
-
-#main{
-    flex : 60%;
-}
-
-*/
-
 
 html{
     height : 100%;
     width : 100%;
-    background-color : #ffffff;
-    font-size: 1.1em;
-    font-family: 'Roboto Condensed', sans-serif;
-
     
+    font-size: 1.1em;
+    font-family: 'Roboto Condensed', sans-serif;    
 }
 
 body{
-    /* Center */
+    background-color : #1b1b1b;
+}
+
+/* Browse */
+input.browse {
+    display: none;
+}
+label.browse {
+    /* Position */
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
 
-    /* Taille */
-    --base_size : 90;
-    --ratio : 2;
-    /*height: min(54vw, 90vh);*/
-    width : calc(var(--base_size) * min(1vw , calc( 1vh * var(--ratio))));
-    height: calc(var(--base_size) * min(calc( 1vw / var(--ratio)) , 1vh));
+    /* Shape */
+    width: 50%;
+    padding: 16px 32px;
+    display: inline-block;
 
-    /* Grille */
-    display: grid;
-    grid-template-columns: 2fr 4fr;
-    grid-template-rows: 1fr 2fr;
-    gap: 10px;
+    /* Make it pretty */
+    border-radius: 10000px;
+    background-color : #e3eef1;
+    cursor: pointer;
+    text-align: center;
+
+    
+}
+label.browse:hover {
+    background-color : #8cb9c4
 }
 
-section{
-    border: 5px solid black;
+/* File loading bar */
+.lds-dual-ring {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    
+    display: inline-block;
+    width: 80px;
+    height: 80px;
 }
-
-#search_bar{
-    grid-area: 1 / 1 / 2 / 2;
+.lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    border-color: #e3eef1 transparent #e3eef1 transparent;
+    animation: lds-dual-ring 1.4s linear infinite;
 }
+@keyframes lds-dual-ring {
+    0% {
+      transform: rotate(0deg) scale(0.8);
+    }
 
-#tools{
-    grid-area: 2 / 1 / 3 / 2;
+    50% {
+        transform: rotate(180deg) scale(1);
+    }
+
+    100% {
+      transform: rotate(360deg) scale(0.8);
+    }
 }
-
-#graph{
-    grid-area: 1 / 2 / 3 / 3;
-}
-
-

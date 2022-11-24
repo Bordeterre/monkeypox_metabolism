@@ -24,3 +24,53 @@
 
     -Fonction pour faire du pathfinding (trouver le chemin entre un métabolite et un autre) ?
     -Fonction pour parser json en excludant certains paths
+
+
+
+
+html{
+    height : 100%;
+    width : 100%;
+    background-color : #ffffff;
+    font-size: 1.1em;
+    font-family: 'Roboto Condensed', sans-serif;    
+}
+
+body{
+    /* Center */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    /* Taille */
+    --base_size : 90;
+    --ratio : 2;
+    /*height: min(54vw, 90vh);*/
+    width : calc(var(--base_size) * min(1vw , calc( 1vh * var(--ratio))));
+    height: calc(var(--base_size) * min(calc( 1vw / var(--ratio)) , 1vh));
+
+    /* Grille */
+    display: grid;
+    grid-template-columns: 2fr 4fr;
+    grid-template-rows: 1fr 2fr;
+    gap: 10px;
+}
+
+section{
+    border: 5px solid black;
+}
+
+#search_bar{
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+#tools{
+    grid-area: 2 / 1 / 3 / 2;
+}
+
+#graph{
+    grid-area: 1 / 2 / 3 / 3;
+}
+
+

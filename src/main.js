@@ -7,6 +7,7 @@ function initialize(){
 }
 
 async function on_file_upload(ev){
+    create_loader();
     let file = ev.target.files[0];
     let pathways = await build_graph_from_sif(GRAPH, file);
     create_pathway_selector(pathways)
