@@ -2,9 +2,10 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <meta name="author" content="Nicolas Maurice">
+        <meta name="author" content="">
         <title>Monkeypox</title>
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="css/commonStyles.css">
+        <link rel="stylesheet" href="css/index.css">
     </head>
 
     <body>
@@ -12,19 +13,14 @@
             <input type="file"  class="browse"  id="file_upload"/>
             Veuillez uploader un fichier .sif
         </label>
-    
-    <!-- <Libraries> -->
-    <script src="https://unpkg.com/cytoscape@3.23.0/dist/cytoscape.min.js"></script>
-    <script src="https://unpkg.com/cytoscape-sbgn-stylesheet@4.0.2/build/bundle.js"></script>
 
-    <script src="https://unpkg.com/layout-base/layout-base.js"></script>
-    <script src="https://unpkg.com/cose-base/cose-base.js"></script>
-    <script src="https://unpkg.com/cytoscape-fcose/cytoscape-fcose.js"></script>
+        <!-- <Libraries> -->
 
-    <!-- <Scripts> -->
-    <script src="src/html_director.js"></script>
-    <script src="src/sif_parser.js"></script>
-    <script src="src/graph.js"></script> <!-- Structure that stores the graph data -->
-    <script src="src/main.js"></script> <!-- Coordinates other scripts -->
-</body>
+        <!-- <Scripts> -->
+        <script src="js/common/graph.js"></script>
+        <script src="js/common/navigation.js"></script>
+        <script src="js/index/index_html_director.js"></script>
+        <script src="js/index/sif_parser.js"></script>
+        <script src="js/index/index.js"></script> <!--Coordinates other scripts -->
+    </body>
 </html>
