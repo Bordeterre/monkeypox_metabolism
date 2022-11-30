@@ -10,12 +10,11 @@ async function query_database(node){
         case "p(HGNC" : await fetch_protein_HGNC(node,id) ; break;
         case "a(ChEMBL" : await fetch_molecule_ChEMBL(node,id) ; break;
         case "a(ChEMBLAssay" : await fetch_assay_ChEMBL(node,id) ; break;
-        case "p(MPXV" : await get_MPXV(node,id) ; break;
+        case "p(MPXV" : await fetch_MPXV_protein_uniprot(node,id) ; break;
         default : console.log("Fetch error, unrecognized database !!! " + database + "  id : " + id);
     }
     node.was_fetched = true;
 }
-
 
 async function fetch_protein_HGNC(node,id){
     let json = await fetch("https://rest.genenames.org/fetch/symbol/" + id, {headers :{'Accept': 'application/json'}})
@@ -34,7 +33,7 @@ async function fetch_protein_HGNC(node,id){
                 .then((response) => response.json());
             node.label = json3.organism + " " + json3.pref_name;
         } catch (e){
-            node.label = id;
+            node.label = "protein_" + id;
         }
     }
 }
@@ -42,7 +41,6 @@ async function fetch_protein_HGNC(node,id){
 async function fetch_molecule_ChEMBL(node,id){
     let json = await fetch("https://www.ebi.ac.uk/chembl/api/data/molecule/" + id + ".json")
         .then((response) => response.json());
-
     node.label = json.pref_name;
 }
 
@@ -65,9 +63,13 @@ async function fetch_assay_ChEMBL(node,id){
     }
 }
 
-async function get_MPXV(node, id){
+async function fetch_MPXV_protein_uniprot(node, id){
+    try {
     let json = await fetch("https://rest.uniprot.org/uniprotkb/" + id, {headers :{'Accept': 'application/json'}})
         .then((response) => response.json());
     let name = json.organism.commonName + " " + json.proteinDescription.recommendedName.fullName.value;
     node.label = name;
+    } catch (e){
+        node.label = "MPXV_protein_" + id;
+    }
 }
