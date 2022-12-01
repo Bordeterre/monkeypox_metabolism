@@ -18,7 +18,7 @@ async function on_file_upload(ev){
         return;
     }
 
-    go_to_pathwaySelection(GRAPH, pathways);
+    go_to_pathwaySelection(GRAPH);
 }
 
 

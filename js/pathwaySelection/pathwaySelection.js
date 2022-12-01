@@ -33,10 +33,9 @@ function pathway_selection_initialize(pathways){
     }
 }
 
+let  object =  JSON.parse(window.sessionStorage.getItem("graph"));
+let  graph = Object.assign(new Graph(), object);
 
-let graph = JSON.parse(window.sessionStorage.getItem("graph"));
-let pathways = JSON.parse(window.sessionStorage.getItem("pathways"));
+let pathways = graph.get_pathways();
 
-console.log(graph);
-console.log(pathways);
 pathway_selection_initialize(pathways)

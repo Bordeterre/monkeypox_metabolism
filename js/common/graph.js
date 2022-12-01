@@ -45,7 +45,13 @@ class Graph {
     }
 
     get_pathways(){
-        // return a list of pathways contained in the graph
+        let pathways = []
+        for (let data of this.elements){
+            if(data.class != "association" && data.id.startsWith("bp(")){
+                pathways.push(data.id)
+            }
+        }
+        return pathways
     }
 
     extract_pathways(pathways){
@@ -53,7 +59,7 @@ class Graph {
         let out = new Set();
         let catalysts = new Set();
         // collect catalysts
-        for (let data of GRAPH.elements){
+        for (let data of this.elements){
             if(data.class == "association"){
                 if(pathways.includes(data.target.id)){
                     catalysts.add(data.source)
@@ -64,7 +70,7 @@ class Graph {
             }
         }
         // collect metabolites
-        for (let data of GRAPH.elements){
+        for (let data of this.elements){
             if(data.class == "association"){
                 if(catalysts.has(data.target) || catalysts.has(data.source)){
                     out.add(data);
