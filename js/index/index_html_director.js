@@ -8,3 +8,22 @@ function create_loader(){
     loader.setAttribute("class","lds-dual-ring");
     document.body.appendChild(loader)
 }
+
+function delete_loader(){
+    let loader = document.getElementsByClassName("lds-dual-ring");
+    loader[0].remove();
+}
+
+function create_error_message(){
+    let message = document.createElement("div");
+    message.setAttribute("class","error-message");
+    message.textContent = "Mauvais format !"
+    document.body.appendChild(message)
+}
+
+function delete_error_message(){
+    let message = document.getElementsByClassName("error-message");
+    if(message[0]){
+        message[0].remove();
+    }
+}
