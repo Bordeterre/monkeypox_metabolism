@@ -1,4 +1,7 @@
 function pathway_selection_initialize(pathways){
+    // Faudra faire un html director pour ça
+    zone = document.getElementById("pathway-list");
+    
     for (let bp of pathways) {
         let name = bp.substring(
             bp.indexOf('(') + 1,
@@ -26,15 +29,14 @@ function pathway_selection_initialize(pathways){
         newDiv.appendChild(label_checkbox);
 
         // Add div to choice_pathway div
-        zone = document.getElementbyClass("pathway-list");
         zone.appendChild(newDiv);
     }
 }
 
 
-let graph = window.sessionStorage.getItem("graph");
-//let pathways = localStorage["pathways"];
+let graph = JSON.parse(window.sessionStorage.getItem("graph"));
+let pathways = JSON.parse(window.sessionStorage.getItem("pathways"));
 
 console.log(graph);
-//console.log(pathways);
-//pathway_selection_initialize(pathways)
+console.log(pathways);
+pathway_selection_initialize(pathways)
