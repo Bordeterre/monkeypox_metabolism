@@ -14,6 +14,9 @@ function create_pathway_selection_checkbox(pathways){
         checkbox.value = bp;
         checkbox.style.display = "";
 
+        //adding a function
+        checkbox.addEventListener("click", on_click_checkbox);
+
         // Creation label (so it is possible to click on the text too)
         let label_checkbox = document.createElement("label")
         label_checkbox.htmlFor = checkbox.id;

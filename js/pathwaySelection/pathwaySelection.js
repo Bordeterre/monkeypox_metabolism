@@ -14,6 +14,16 @@ function search_function(ev){
     })
 }
 
+async function on_click_checkbox(ev){
+    let zone = document.getElementById("pathway-list");
+    let path_checkboxes = document.getElementsByName("path");
+    path_checkboxes.forEach(item => { // loop all the checkbox item
+        if (item.checked) {
+            zone.insertBefore(item.parentNode,zone.firstChild);
+        }
+    })
+}
+
 async function on_pathway_selection(ev){
     //affiche le graphe avec juste les pathways dont on a besoin
     path_checkboxes = document.getElementsByName("path");
