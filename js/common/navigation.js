@@ -12,6 +12,6 @@ function go_to_loadingGraph(graph, pathways){
     window.localStorage.clear();
     window.sessionStorage.setItem("graph",JSON.stringify(graph));
     window.sessionStorage.setItem("pathways",JSON.stringify(pathways));
-    window.location.href = "html/loadingGraph.html";
+    window.location.href = "../html/loadingGraph.html";
 }
 

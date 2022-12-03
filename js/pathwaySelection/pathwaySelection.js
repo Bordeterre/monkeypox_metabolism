@@ -27,7 +27,8 @@ async function on_pathway_selection(ev){
     //j'espère que je return le bon truc
     go_to_loadingGraph(graph, result)
 }
-function pathway_selection_initialize(pathways){
+
+function pathwaySelection_initialize(pathways){
     create_pathway_selection_checkbox(pathways);
     create_search_bar();
     create_submit();
@@ -38,4 +39,4 @@ let  graph = Object.assign(new Graph(), object);
 
 let pathways = graph.get_pathways();
 
-pathway_selection_initialize(pathways)
+pathwaySelection_initialize(pathways)
