@@ -1,36 +1,36 @@
+function search_function(ev){
+    let input = ev.target.value
+    let filter = input.toUpperCase();
+    let path_checkboxes = document.getElementsByName("path");
+    path_checkboxes.forEach(item => { // loop all the checkbox item
+        if (item.id.toUpperCase().includes(filter)) {
+            item.parentNode.style.display = "";
+        }
+        else {
+            item.parentNode.style.display = "none";
+            //unchek item that are no longer in the wanted items
+            //item.checked = false;
+        }
+    })
+}
+
+async function on_pathway_selection(ev){
+    //affiche le graphe avec juste les pathways dont on a besoin
+    path_checkboxes = document.getElementsByName("path");
+    let result = [];
+    path_checkboxes.forEach(item => { // loop all the checkbox item
+        if (item.checked) {  //if the check box is checked
+            let data = item.value;   // create an object
+            result.push(data); //stored the objects to result array
+        }
+    })
+    //j'espère que je return le bon truc
+    go_to_loadingGraph(graph, result)
+}
 function pathway_selection_initialize(pathways){
-    // Faudra faire un html director pour ça
-    zone = document.getElementById("pathway-list");
-    
-    for (let bp of pathways) {
-        let name = bp.substring(
-            bp.indexOf('(') + 1,
-            bp.lastIndexOf(')')
-        );
-
-        // Creation checkbox
-        let checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.id = name;
-        checkbox.name = "path";
-        checkbox.value = bp;
-        checkbox.style.display = "";
-
-        // Creation label (so it is possible to click on the text too)
-        let label_checkbox = document.createElement("label")
-        label_checkbox.htmlFor = checkbox.id;
-        label_checkbox.style.display = "";
-        label_checkbox.appendChild(document.createTextNode(name));
-
-        // Adding a div and append checkbox and label to the div
-        const newDiv = document.createElement("div");
-        newDiv.style.display = "";
-        newDiv.appendChild(checkbox);
-        newDiv.appendChild(label_checkbox);
-
-        // Add div to choice_pathway div
-        zone.appendChild(newDiv);
-    }
+    create_pathway_selection_checkbox(pathways);
+    create_search_bar();
+    create_submit();
 }
 
 let  object =  JSON.parse(window.sessionStorage.getItem("graph"));
