@@ -74,10 +74,7 @@ class Graph {
             }
         }
         return out;
-        
     }
-
-    
 }
 
 class Graph_element {
@@ -97,9 +94,10 @@ class Edge extends Graph_element {
 }
 
 class Node extends Graph_element {
-    constructor(id, class_name, label) {
+    constructor(id, class_name, label, name) {
         super(id, class_name),
-            this.label = label
+            this.label = label,
+            this.name = name
     }
 }
 
@@ -114,8 +112,6 @@ class Displayable_node extends Node {
         super(id, class_name, label, clonemarker)
         this.was_fetched=false;
     }
-
-
 }
 
 class Catalyst extends Displayable_node {
