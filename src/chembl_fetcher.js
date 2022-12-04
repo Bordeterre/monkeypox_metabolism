@@ -73,3 +73,9 @@ async function fetch_MPXV_protein_uniprot(node, id){
         node.label = "MPXV_protein_" + id;
     }
 }
+
+async function get_node_name(node){
+    console.log("test get_name");
+    console.log(node.name);
+    return node.name;
+}
