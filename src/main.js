@@ -15,13 +15,13 @@ function initialize(){
 
 async function on_file_upload(ev){
     // Codé en dur pour l'instant, à remplacer par un choix interactif de l'utilisateur et/ou une config file
-    let filter_nodes = ['bp(MOA:"Envelope phospholipase F13 (p37) inhibitor")','bp(Reactome:"Defective AHCY causes HMAHCHD.")','bp(Reactome:"Sulfur amino acid metabolism.")','bp(GOBP:"one-carbon metabolic process")'];
+    //let filter_nodes = ['bp(MOA:"Envelope phospholipase F13 (p37) inhibitor")','bp(Reactome:"Defective AHCY causes HMAHCHD.")','bp(Reactome:"Sulfur amino acid metabolism.")','bp(GOBP:"one-carbon metabolic process")'];
     let file = ev.target.files[0];
     // List of all pathways in the sif
     let pathways = await build_graph_from_sif(GRAPH, file);
     //file = write_json(GRAPH);
     //display_graph(filter_nodes);
-    console.log(GRAPH)
+    //console.log(GRAPH)                                                                                    à remettre
     //console.log(file)
     // Créer boutons et eventlisteners pour sélectionner des paths à filtrer
     let select_zone = document.getElementById("choice_pathway");
@@ -90,7 +90,7 @@ function search_function(ev){
     let filter = input.toUpperCase();
     let path_checkboxes = document.getElementsByName("path");
     path_checkboxes.forEach(item => { // loop all the checkbox item
-        console.log(item.id.toUpperCase())
+        //console.log(item.id.toUpperCase())
         if (item.id.toUpperCase().includes(filter)) {
             item.parentNode.style.display = "";
         }
@@ -117,7 +117,7 @@ async function on_pathway_selection(ev){
 
 
 async function display_graph(pathways){
-    console.log(pathways)
+    //console.log(pathways)                                             à remettre
 
     let cy = cytoscape({
         container : document.getElementById("graph_display"),
@@ -126,10 +126,59 @@ async function display_graph(pathways){
         
     });
 
-    console.log(cy);
+    //console.log(cy);                                                  à remettre
     cy.layout({name: "fcose"}).run();
 
+
+///////////////////////////////////////////////////// Pour cliquer sur un node //////////////////////////////////////////////////////////////
+
+
+    cy.on('tap', 'node', function(evt){
+        var node = evt.target;
+        console.log( 'tapped ' + node.id() );
+
+    
+
+
+        //// créer un texte sur la page pour écrire le nom de l'assay en entier
+        let bidule = document.createElement("div");
+        let entire_name_assay = document.createTextNode('Hi there and greetings!');
+    // ajoute le nœud texte au nouveau div créé
+    newDiv.appendChild(newContent);
+    });
+
+    let name_text = document.createElement("entire_name_of_assays");
+    form.setAttribute("type","file");
+    form.setAttribute("class","browse");
+    form.setAttribute("id","upload_input");
+    form.addEventListener("change", on_file_upload);
+
+    let upload_zone = document.getElementById("download_zone");
+    let entire_name_assay = document.createTextNode('Hi there and greetings!');
+    download_zone.appendChild(entire_name_assay);
+
+
+   
+/*
+
+
+cy.on('tap', 'node', function(evt){
+    var node = evt.target;
+    let name = get_node_name(node);
+    console.log( 'name : ');
+    console.log(name);
+  });
+
+*/
+
 }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
 
 ///////////////////////////////////////////////////     MAIN     ///////////////////////////////////////////////////
 const GRAPH = new Graph();
