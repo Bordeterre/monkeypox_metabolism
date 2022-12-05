@@ -15,3 +15,8 @@ function go_to_loadingGraph(graph, pathways){
     window.location.href = "../html/loadingGraph.html";
 }
 
+function go_to_displayGraph(json){
+    window.localStorage.clear();
+    window.sessionStorage.setItem("json",JSON.stringify(json));
+    window.location.href = "../html/graph.html";
+}
