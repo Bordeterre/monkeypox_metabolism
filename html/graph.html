@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="">
+        <title>Monkeypox</title>
+        <link rel="stylesheet" href="../css/commonStyles.css">
+        <link rel="stylesheet" href="../css/pathwaySelection.css">
+    </head>
+
+    <body>
+
+        <div id="display_name"></div>
+        <div id="graph_display"></div>
+
+        <!-- <Libraries> -->
+        <script src="https://unpkg.com/cytoscape@3.23.0/dist/cytoscape.min.js"></script>
+        <script src="https://unpkg.com/cytoscape-sbgn-stylesheet@4.0.2/build/bundle.js"></script>
+
+        <!-- <Scripts> -->
+
+        <script src="../js/common/graph.js"></script>
+        <script src="../js/common/navigation.js"></script>
+        <script src="../js/displayGraph/displayGraph.js"></script>
+
+    </body>
+    <style>
+        #graph_display {
+            width: 95%;
+            height: 100%;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+        }
+    </style>
+</html>
