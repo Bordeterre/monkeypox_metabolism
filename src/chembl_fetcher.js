@@ -23,6 +23,7 @@ async function fetch_protein_HGNC(node,id){
 
     if (json.response.numFound != 0){
         node.label = json.response.docs[0].name;
+        node.name = json.response.docs[0].name;
         node.uniprot_id = json.response.docs[0].uniprot_ids;
     }
     else{
@@ -32,8 +33,10 @@ async function fetch_protein_HGNC(node,id){
             let json3 = await fetch("https://www.ebi.ac.uk" + json2.resource_url + ".json")
                 .then((response) => response.json());
             node.label = json3.organism + " " + json3.pref_name;
+            node.name = json3.organism + " " + json3.pref_name;
         } catch (e){
             node.label = "protein_" + id;
+            node.name = "protein_" + id;
         }
     }
 }
@@ -42,6 +45,7 @@ async function fetch_molecule_ChEMBL(node,id){
     let json = await fetch("https://www.ebi.ac.uk/chembl/api/data/molecule/" + id + ".json")
         .then((response) => response.json());
     node.label = json.pref_name;
+    node.name = json.pref_name;
 }
 
 async function fetch_assay_ChEMBL(node,id){
@@ -55,11 +59,13 @@ async function fetch_assay_ChEMBL(node,id){
         let sliced_name = array_name.slice(2,7);
         let cut_name = sliced_name.join("\u0020");
         node.label = cut_name;
+        node.name = name;
     }
     else {
         let sliced_name = array_name.slice(0,5);
         let cut_name = sliced_name.join("\u0020");
-        node.label = cut_name; 
+        node.label = cut_name;
+        node.name = name;
     }
 }
 
@@ -69,13 +75,9 @@ async function fetch_MPXV_protein_uniprot(node, id){
         .then((response) => response.json());
     let name = json.organism.commonName + " " + json.proteinDescription.recommendedName.fullName.value;
     node.label = name;
+    node.name = name;
     } catch (e){
         node.label = "MPXV_protein_" + id;
+        node.name = "MPXV_protein_" + id;
     }
-}
-
-async function get_node_name(node){
-    console.log("test get_name");
-    console.log(node.name);
-    return node.name;
 }
