@@ -135,6 +135,7 @@ async function display_graph(pathways){
 ///////////////////////////////////////////////////// To display entire name of assays when node is clicked //////////////////////////////////////////////////////////////
 
     cy.on('tap', 'node', function(evt){
+        document.getElementById("download_zone").innerHTML = "";
         var node_promised = evt.target;
         let node = get_node(node_promised.id());
         console.log(node.name);
@@ -142,8 +143,6 @@ async function display_graph(pathways){
         let download_zone = document.getElementById("download_zone");
         let entire_name_assay = document.createTextNode(node.name);
         download_zone.appendChild(entire_name_assay);
-
-
     });
 }
 
