@@ -54,37 +54,61 @@ class Graph {
         return pathways
     }
 
-    extract_pathways(pathways){
-        // return catalysts and metabolites associated to thaose pathways
+    async extract_pathways(pathways){
         let out = new Set();
         let catalysts = new Set();
-        // collect catalysts
+        let keptIds = new Set();
         for (let data of this.elements){
-            if(data.class == "association"){
-                if(pathways.includes(data.target.id)){
-                    catalysts.add(data.source)
+            if (data.class == "association"){
+                if (pathways.includes(data.target.id)){
+                    if (!keptIds.has(data.source.id)){
+                        catalysts.add(data.source);
+                        keptIds.add(data.source.id);
+                    }
                 }
-                else if(pathways.includes(data.source.id)){
-                    catalysts.add(data.target)
+                else if (pathways.includes(data.source.id)){
+                    if (!keptIds.has(data.target.id)){
+                        catalysts.add(data.target);
+                        keptIds.add(data.target.id);
+                    }
                 }
             }
         }
-        // collect metabolites
         for (let data of this.elements){
-            if(data.class == "association"){
-                if(catalysts.has(data.target) || catalysts.has(data.source)){
+            let iter = catalysts.values();
+            for (let j of iter){
+                if (data.id == j.id){
                     out.add(data);
-                    out.add(data.source);
-                    out.add(data.target);
+                }
+            }
+           
+            if (data.class == "association"){
+                if(keptIds.has(data.target.id) || keptIds.has(data.source.id)){
+                    if (!keptIds.has(data.id)){
+                        out.add(data);
+                        keptIds.add(data.id);
+                    }
+                    if (!keptIds.has(data.source.id)){
+                        out.add(data.source);
+                        keptIds.add(data.source.id);
+                    }
+                    if (!keptIds.has(data.target.id)){
+                        out.add(data.target);
+                        keptIds.add(data.target.id);
+                    }
+
                 }
             }
         }
+        
         return out;
-
     }
 
 
+
+
 }
+
 
 class Graph_element {
     constructor(id, class_name) {
@@ -103,9 +127,10 @@ class Edge extends Graph_element {
 }
 
 class Node extends Graph_element {
-    constructor(id, class_name, label) {
+    constructor(id, class_name, label, name) {
         super(id, class_name),
-            this.label = label
+            this.label = label,
+            this.name = name
     }
 }
 
