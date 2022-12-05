@@ -1,6 +1,9 @@
 
-function loadingGraph_initialize(pathways){
-    console.log(pathways)
+async function loadingGraph_initialize(pathways){
+
+    
+    let json = await extract_json(GRAPH, pathways);
+    go_to_displayGraph(json);
 }
 
 
