@@ -1,5 +1,4 @@
 
-
 /////////////////////////////////////////////////     FUNCTIONS     ////////////////////////////////////////////////
 
 function initialize(){
@@ -21,7 +20,7 @@ async function on_file_upload(ev){
     let pathways = await build_graph_from_sif(GRAPH, file);
     //file = write_json(GRAPH);
     //display_graph(filter_nodes);
-    //console.log(GRAPH)                                                                                    à remettre
+    //console.log(GRAPH)                                                                                    to put back
     //console.log(file)
     // Créer boutons et eventlisteners pour sélectionner des paths à filtrer
     let select_zone = document.getElementById("choice_pathway");
@@ -112,12 +111,16 @@ async function on_pathway_selection(ev){
             result.push(data); //stored the objects to result array
         }
     })
-    display_graph(result)
+    display_graph(result);
 }
 
+function get_node(id){
+    let node = GRAPH.search_element(id);
+    return node;
+}
 
 async function display_graph(pathways){
-    //console.log(pathways)                                             à remettre
+    console.log(pathways);
 
     let cy = cytoscape({
         container : document.getElementById("graph_display"),
@@ -126,59 +129,23 @@ async function display_graph(pathways){
         
     });
 
-    //console.log(cy);                                                  à remettre
     cy.layout({name: "fcose"}).run();
+    console.log(cy);
 
-
-///////////////////////////////////////////////////// Pour cliquer sur un node //////////////////////////////////////////////////////////////
-
+///////////////////////////////////////////////////// To display entire name of assays when node is clicked //////////////////////////////////////////////////////////////
 
     cy.on('tap', 'node', function(evt){
-        var node = evt.target;
-        console.log( 'tapped ' + node.id() );
+        var node_promised = evt.target;
+        let node = get_node(node_promised.id());
+        console.log(node.name);
 
-    
+        let download_zone = document.getElementById("download_zone");
+        let entire_name_assay = document.createTextNode(node.name);
+        download_zone.appendChild(entire_name_assay);
 
 
-        //// créer un texte sur la page pour écrire le nom de l'assay en entier
-        let bidule = document.createElement("div");
-        let entire_name_assay = document.createTextNode('Hi there and greetings!');
-    // ajoute le nœud texte au nouveau div créé
-    newDiv.appendChild(newContent);
     });
-
-    let name_text = document.createElement("entire_name_of_assays");
-    form.setAttribute("type","file");
-    form.setAttribute("class","browse");
-    form.setAttribute("id","upload_input");
-    form.addEventListener("change", on_file_upload);
-
-    let upload_zone = document.getElementById("download_zone");
-    let entire_name_assay = document.createTextNode('Hi there and greetings!');
-    download_zone.appendChild(entire_name_assay);
-
-
-   
-/*
-
-
-cy.on('tap', 'node', function(evt){
-    var node = evt.target;
-    let name = get_node_name(node);
-    console.log( 'name : ');
-    console.log(name);
-  });
-
-*/
-
 }
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
 
 ///////////////////////////////////////////////////     MAIN     ///////////////////////////////////////////////////
 const GRAPH = new Graph();
