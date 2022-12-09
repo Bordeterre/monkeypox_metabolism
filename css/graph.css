@@ -1,0 +1,26 @@
+#name_display{
+    width: 50%;
+    height: 6%; /* si tous les noms font max 2 lignes, mettre à 4% sinon 6%*/
+    position: absolute;
+    top: 0%;
+    left: 0%;
+
+    padding: 8px 16px;
+    border-radius: 10000px;
+    background-color : #e3eef1;
+    outline: none;
+    border: 0px;
+
+    border: 3px solid  #e3eef1;
+
+    text-align: center;
+}
+
+#graph_display{
+    width: 95%;
+    height: 100%;
+    position: absolute;
+    top: 10%;
+    left: 0%;
+    color: #1bacd4   /*marche pas*/
+}
