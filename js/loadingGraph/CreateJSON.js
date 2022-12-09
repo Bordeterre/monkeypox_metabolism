@@ -50,12 +50,12 @@ async function extract_json(graph, pathways){
         switch (classe){
             case "macromolecule" :
                 await query_database(i);
-                data.push({data:{id:i.id, class:i.class, label:i.label, clonemarker:"false", stateVariables: [], 
+                data.push({data:{id:i.id, class:i.class, label:i.label, name:i.name, clonemarker:"false", stateVariables: [], 
                 unitsOfInformation: []}});
                 break;
             case "simple chemical" :
                 await query_database(i);
-                data.push({data:{id:i.id, class:i.class, label:i.label, clonemarker:"false", stateVariables: [], 
+                data.push({data:{id:i.id, class:i.class, label:i.label, name:i.name, clonemarker:"false", stateVariables: [], 
                 unitsOfInformation: []}});
                 break;
             case "association" :
