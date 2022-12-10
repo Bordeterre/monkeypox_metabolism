@@ -1,0 +1,35 @@
+/* File loading bar */
+.lds-dual-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+}
+.lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    border-color: #e3eef1 transparent #e3eef1 transparent;
+    animation: lds-dual-ring 1.4s linear infinite;
+}
+@keyframes lds-dual-ring {
+    0% {
+      transform: rotate(0deg) scale(5);
+    }
+
+    50% {
+        transform: rotate(180deg) scale(6);
+    }
+
+    100% {
+      transform: rotate(360deg) scale(5);
+    }
+}

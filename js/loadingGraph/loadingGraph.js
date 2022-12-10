@@ -1,8 +1,9 @@
 
 async function loadingGraph_initialize(pathways){
-
-    
+    console.log("eee")
+    create_loader();
     let json = await extract_json(GRAPH, pathways);
+    delete_loader();
     go_to_displayGraph(json);
 }
 
