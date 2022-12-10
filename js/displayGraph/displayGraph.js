@@ -19,10 +19,7 @@ function display_graph(json){
     });
 
 }
-    
-    
-    
-}
+
 
 
 
