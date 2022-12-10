@@ -19,7 +19,6 @@ async function query_database(node){
 async function fetch_protein_HGNC(node,id){
     let json = await fetch("https://rest.genenames.org/fetch/symbol/" + id, {headers :{'Accept': 'application/json'}})
         .then((response) => response.json());
-    //console.log(json.response.numFound);
 
     if (json.response.numFound != 0){
         node.label = json.response.docs[0].name;
@@ -52,7 +51,6 @@ async function fetch_assay_ChEMBL(node,id){
     let json = await fetch("https://www.ebi.ac.uk/chembl/api/data/assay/" + id + ".json")
         .then((response) => response.json());
     let name = json.description;
-    //console.log(name);                                          // à enlever quand j'ai trouvé comment afficher le nom entier des assays quand on clique dessus
     let array_name = name.split("\u0020");
     
     if (array_name[0].startsWith("PUB")){

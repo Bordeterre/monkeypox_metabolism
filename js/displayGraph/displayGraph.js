@@ -24,6 +24,5 @@ function display_graph(json){
 
 
 let json = JSON.parse(window.sessionStorage.getItem("json"));
-console.log(json);
 display_graph(json);
 

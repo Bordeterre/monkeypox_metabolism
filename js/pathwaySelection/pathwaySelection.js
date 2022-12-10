@@ -9,7 +9,6 @@ function search_function(ev){
         else {
             item.parentNode.style.display = "none";
             //unchek item that are no longer in the wanted items
-            //item.checked = false;
         }
     })
 }
@@ -34,7 +33,6 @@ async function on_pathway_selection(ev){
             result.push(data); //stored the objects to result array
         }
     })
-    //j'espère que je return le bon truc
     go_to_loadingGraph(graph, result)
 }
 

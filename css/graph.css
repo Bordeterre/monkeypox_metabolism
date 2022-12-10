@@ -1,6 +1,6 @@
 #name_display{
     width: 50%;
-    height: 6%; /* si tous les noms font max 2 lignes, mettre à 4% sinon 6%*/
+    height: 6%; 
     position: absolute;
     top: 0%;
     left: 0%;
@@ -22,5 +22,4 @@
     position: absolute;
     top: 10%;
     left: 0%;
-    color: #1bacd4   /*marche pas*/
 }
